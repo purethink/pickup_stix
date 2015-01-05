@@ -1,0 +1,33 @@
+<% content_for(:toolbar) do %>
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), component_instance_title(@component) + " [#{indicator_type(@component)}]"] %>
+<% end %>
+
+<stix-card class="full">
+  <h2><%= component_instance_title(@component) %></h2>
+  <% if @component.types.length > 0 %>
+    <% @component.types.each do |t| %>
+      <%= render '/shared/generic_field', :lbl => 'Type', :object => t.value %>
+    <% end %>
+  <% end %>
+  <p class="description"><%= @component.description.value -%></p>
+</stix-card>
+
+<div id="double-column">
+  <%= render '/indicators/pattern', :indicator => @component, :heading_level => 2 %>
+  <stix-card component="ttp">
+    <h2>Indicated TTPs</h2>
+    <% if @out['indicated_ttps'] %>
+      <ul class="component-list ttp-color">
+        <% @out['indicated_ttps'].each do |child| %>
+        <li>
+          <%= link_to(child.try(&:title) || "(Unknown)", component_path_for_class(child.id, child.labels.first)) %>
+        </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="message">No Indicated TTPs</p>
+    <% end %>
+  </stix-card>
+
+  <%= render '/components/generic_footer' %>
+</div>

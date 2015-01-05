@@ -1,0 +1,11 @@
+<section class="content">
+  <% object = object.class.find(id_string(object.idref)) %>
+  <%= content_tag("h#{heading_level}", component_title(object.properties.class).gsub(" Type", "").html_safe) %>
+  <% object.properties.class.stix_fields.each do |field| %>
+    <%= render_generic_template(object.properties.send(field_name(field)), field.name.to_s, heading_level+1) %>
+  <% end %>
+  <% object.class.stix_fields.each do |field| %>
+    <% next if field_name(field) == 'properties' %>
+    <%= render_generic_template(object.send(field_name(field)), field.name.to_s, heading_level+1) %>
+  <% end %>
+</section>

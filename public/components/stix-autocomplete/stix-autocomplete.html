@@ -1,0 +1,103 @@
+<link href="/bower_components/core-field/core-field.html" rel="import">
+<link href="/bower_components/core-icon/core-icon.html" rel="import">
+
+<polymer-element name="stix-autocomplete" url="/autocomplete">
+  <template>
+    <style>
+      :host {
+
+      }
+      .tt-dropdown-menu {
+        position: absolute;
+        top: 26px;
+        left: -37px;
+        right: -1px;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 160px;
+        margin: 2px 0 0;
+        list-style: none;
+        font-size: 14px;
+        text-align: left;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background-clip: padding-box;
+      }
+      .tt-suggestion > p {
+        margin: 0;
+        display: block;
+        padding: 5px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333333;
+        white-space: nowrap;
+        border-left: 5px solid;
+      }
+      .tt-suggestion:not(.tt-cursor) > p {
+        background-color: white;
+      }
+      .tt-suggestion > p:hover,
+      .tt-suggestion > p:focus {
+        border-left: 0;
+        padding-left: 25px;
+        color: white !important;
+      }
+      .tt-suggestion.tt-cursor p {
+        border-left: 0;
+        padding-left: 25px;
+        color: white;
+      }
+      span.twitter-typeahead {
+        width: 100%;
+      }
+      .input-group span.twitter-typeahead {
+        display: block !important;
+      }
+      .input-group span.twitter-typeahead .tt-dropdown-menu {
+        top: 32px !important;
+      }
+      .input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
+        top: 44px !important;
+      }
+      .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
+        top: 28px !important;
+      }
+    </style>
+    <core-field>
+      <core-icon icon="search"></core-icon>
+      <input placeholder="Search" flex on-keydown={{onKeydown}} id="search">
+    </core-field>
+  </template>
+  <script>
+    Polymer({
+      domReady: function() {
+        this.engine = new Bloodhound({
+          name: 'autocomplete',
+          remote: this.attributes['url'].value + '?term=%QUERY',
+          datumTokenizer: function(d) {
+            return Bloodhound.tokenizers.whitespace(d.val);
+          },
+          queryTokenizer: Bloodhound.tokenizers.whitespace
+        });
+        this.engine.initialize();
+
+        $(this.$.search).typeahead({
+          minLength: 3,
+          highlight: true,
+        },
+        {
+          source: this.engine.ttAdapter(),
+          displayKey: 'title',
+          templates: {
+            suggestion: function(val) {
+              return "<p class='suggestion " + val.type + "-color " + val.type + "-bgcolor'>" + val.title + "</p>"
+            }
+          }
+        }).on('typeahead:selected', function(e, it) {document.location.href = it.url});
+      }
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,190 @@
+body /deep/ .campaign-color {
+  color: #145c90;
+  border-color: #145c90 !important;
+  &:hover, &:active, &:visited {
+    color: #145c90;
+  }
+}
+
+body /deep/ .stix-color, .report-color {
+  color: black;
+  border-color: black !important;
+  &:hover, &:active, &:visited {
+    color: black;
+  }
+}
+
+body /deep/ .threatactor-color {
+  color: #b51d17;
+  border-color: #b51d17 !important;
+  &:hover, &:active, &:visited {
+    color: #b51d17;
+  }
+}
+
+body /deep/ .courseofaction-color {
+  color: #377900;
+  border-color: #377900 !important;
+  &:hover, &:active, &:visited {
+    color: #377900;
+  }
+}
+
+body /deep/ .observable-color {
+  color: #6b81b5;
+  border-color: #6b81b5 !important;
+  &:hover, &:active, &:visited {
+    color: #6b81b5;
+  }
+}
+
+body /deep/ .indicator-color {
+  color: #dddd00;
+  border-color: #dddd00 !important;
+  &:hover, &:active, &:visited {
+    color: #dddd00;
+  }
+}
+
+body /deep/ .incident-color {
+  color: #c96300;
+  border-color: #c96300 !important;
+  &:hover, &:active, &:visited {
+    color: #c96300;
+  }
+}
+
+body /deep/ .ttp-color {
+  color: #532580;
+  border-color: #532580 !important;
+  &:hover, &:active, &:visited {
+    color: #532580;
+  }
+}
+
+body /deep/ .exploittarget-color {
+  color: #4e4e4e;
+  border-color: #4e4e4e !important;
+  &:hover, &:active, &:visited {
+    color: #4e4e4e;
+  }
+}
+
+/* Background color */
+
+body /deep/ .campaign-bgcolor {
+  background-color: rgba(20,92,144, 1);
+}
+
+body /deep/ .threatactor-bgcolor {
+  background-color: rgba(181,29,23, 1);
+}
+
+body /deep/ .courseofaction-bgcolor {
+  background-color: rgba(55,121,0, 1);
+}
+
+body /deep/ .observable-bgcolor {
+  background-color: rgba(107,129,181, 1);
+}
+
+body /deep/ .indicator-bgcolor {
+  background-color: rgba(221,221,0, 1);
+}
+
+body /deep/ .incident-bgcolor {
+  background-color: rgba(201,99,0, 1);
+}
+
+body /deep/ .ttp-bgcolor {
+  background-color: rgba(83,37,128, 1);
+}
+
+body /deep/ .exploittarget-bgcolor {
+  background-color: rgba(78,78,78, 1);
+}
+
+body /deep/ .stix-bgcolor {
+  background-color: rgba(0,0,0, 1);
+}
+
+body /deep/ .report-bgcolor {
+  background-color: rgba(0,0,0, 1);
+}
+
+body /deep/ .campaign-bgcoloropaque {
+  background-color: rgba(20,92,144, 0.7);
+}
+
+body /deep/ .threatactor-bgcoloropaque {
+  background-color: rgba(181,29,23, 0.7);
+}
+
+body /deep/ .courseofaction-bgcoloropaque {
+  background-color: rgba(55,121,0, 0.7);
+}
+
+body /deep/ .observable-bgcoloropaque {
+  background-color: rgba(107,129,181, 0.7);
+}
+
+body /deep/ .indicator-bgcoloropaque {
+  background-color: rgba(238,238,0, 0.7);
+}
+
+body /deep/ .incident-bgcoloropaque {
+  background-color: rgba(201,99,0, 0.7);
+}
+
+body /deep/ .ttp-bgcoloropaque {
+  background-color: rgba(83,37,128, 0.7);
+}
+
+body /deep/ .exploittarget-bgcoloropaque {
+  background-color: rgba(78,78,78, 0.7);
+}
+
+body /deep/ .stix-bgcoloropaque {
+  background-color: rgba(0,0,0, 0.7);
+}
+
+body /deep/ .report-bgcoloropaque {
+  background-color: rgba(0,0,0, 0.7);
+}
+
+/* Border color */
+body /deep/ .campaign-bordercolor {
+  border-color: rgba(20,92,144, 1) !important;
+}
+
+body /deep/ .threatactor-bordercolor {
+  border-color: rgba(181,29,23, 1) !important;
+}
+
+body /deep/ .courseofaction-bordercolor {
+  border-color: rgba(55,121,0, 1) !important;
+}
+
+body /deep/ .observable-bordercolor {
+  border-color: rgba(107,129,181, 1) !important;
+}
+
+body /deep/ .indicator-bordercolor {
+  border-color: rgba(221,221,0, 1) !important;
+}
+
+body /deep/ .incident-bordercolor {
+  border-color: rgba(201,99,0, 1) !important;
+}
+
+body /deep/ .ttp-bordercolor {
+  border-color: rgba(83,37,128, 1) !important;
+}
+
+body /deep/ .exploittarget-bordercolor {
+  border-color: rgba(78,78,78, 1) !important;
+}
+
+body /deep/ .stix-bordercolor, .report-bordercolor {
+  border-color: rgba(0,0,0, 1) !important;
+}

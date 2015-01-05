@@ -1,0 +1,3 @@
+<% object.properties.class.stix_fields.each do |field| %>
+  <%= render_generic_template(object.properties.send(field_name(field)), field_name(field), 3) %>
+<% end %>

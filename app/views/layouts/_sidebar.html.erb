@@ -1,0 +1,18 @@
+<div id="sidebar">
+  <nav>
+    <form class="form-search">
+      <stix-autocomplete></stix-autocomplete>
+    </form>
+    <core-menu>
+      <ul>
+        <li><a href="/reports"><paper-button class="report-color">Reports</paper-button></a></li>
+        <% COMPONENT_TYPES.each do |label, val| %>
+          <li><a href="<%= components_path(val) -%>"><paper-button class="<%= component_color(val) -%>"><%= label %></paper-button></a></li>
+        <% end %>
+      </ul>
+    </core-menu>
+  </nav>
+  <paper-fab icon="file-upload" title="create" role="button" tabindex="0" aria-label="create" id="upload"></paper-fab>
+</div>
+
+<stix-uploader id="upload-dialog"></stix-uploader>

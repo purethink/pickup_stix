@@ -1,0 +1,19 @@
+<div class="row">
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), component_instance_title(@component)] %>
+</div>
+
+<div id="main-content">
+  <div class="row content-row">
+    <div class="col-md-12">
+      <div class="card observable-bordercolor">
+        <%= content_tag "h2", observable_type(@component) %>
+        <div class="card-content">
+          <%= render_observable(@component) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <%= render '/components/generic_footer' %>
+</div>

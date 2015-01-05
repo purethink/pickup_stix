@@ -1,0 +1,8 @@
+<% if lbl.blank? %>
+  <p class="field-label"><%= object.value.to_s %></p>
+<% else %>
+<p class="field-label">
+  <span class="lbl"><%= translate_term(lbl) %></span>
+  <span class="field"><%= object.value.to_s %></span>
+</p>
+<% end %>

@@ -1,0 +1,22 @@
+<% if indicator.observable.present? %>
+  <stix-card component="observable">
+    <h2><%= observable_type(indicator.observable.dereference) -%></h2>
+    <%= render_observable(indicator.observable.dereference) %>
+  </stix-card>
+<% elsif indicator.composite_indicator_expression.present? %>
+  <div class="card indicator-bordercolor">
+    <%= content_tag "h#{heading_level}", "Composition [#{indicator.composite_indicator_expression.operator}]" %>
+    <div class="card-content">
+      <%= render '/indicators/composition', :expression => indicator.composite_indicator_expression, :heading_level => (heading_level+1) %>
+    </div>
+  </div>
+<% elsif indicator.test_mechanisms %>
+<div class="card indicator-bordercolor">
+  <%= content_tag "h#{heading_level}", "Test Mechanisms" %>
+  <div class="card-content">
+    <p class="message">Not supported</p>
+  </div>
+</div>
+<% else %>
+
+<% end %>

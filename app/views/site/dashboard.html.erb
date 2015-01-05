@@ -1,0 +1,6 @@
+<% @statistics.each do |component| %>
+  <section class="dashboard">
+    <h2 class="report-type-header <%= component_color(component[:type], 'bgcolor') -%>"><%= link_to(translate_term(component[:name]).pluralize, component[:link]) %></h2>
+    <p class="count"><%= component[:count] %></p>
+  </section>
+<% end %>

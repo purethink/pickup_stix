@@ -1,0 +1,47 @@
+{
+  "name": "ordered-columns",
+  "homepage": "https://github.com/stevenrskelton/ordered-columns",
+  "description": "Polymer Web Component that builds vertically ordered columns (timelines) from arbitrary DOM content",
+  "main": "ordered-columns.html",
+  "authors": [
+    "Steven Skelton"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "timeline",
+    "column",
+    "html",
+    "ordered",
+    "sorted",
+    "vertical",
+    "chronological"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#>=0.5.1"
+  },
+  "devDependencies": {
+    "core-elements": "Polymer/core-elements#>=0.5.1",
+    "prism-js": "prism-js#>=0.1.0"
+  },
+  "version": "0.1.1",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.1",
+    "commit": "0c64f8250f7dcef0a4868fcbb51fde3ad262ba6e"
+  },
+  "_source": "git://github.com/stevenrskelton/ordered-columns.git",
+  "_target": "~0.1.1",
+  "_originalSource": "ordered-columns",
+  "_direct": true
+}

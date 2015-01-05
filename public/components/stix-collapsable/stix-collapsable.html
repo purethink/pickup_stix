@@ -1,0 +1,62 @@
+<link href="/bower_components/core-collapse/core-collapse.html" rel="import">
+<link href="/bower_components/icon-transition/icon-transition.html" rel="import">
+<polymer-element name="stix-collapsable" attributes="heading expanded">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      #toggle {
+        display: block;
+        font-size: 1.5em;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .heading {
+        margin: 0;
+        padding: 0;
+      }
+
+      .subheading {
+        opacity: 0.5;
+      }
+
+      icon-transition {
+        position: absolute;
+        right: 0;
+        top: -1px;
+      }
+    </style>
+    <div id="toggle" on-click="{{toggle}}">
+      <p class="heading">{{heading}}<span class="subheading">{{subheading}}</span></p>
+      <icon-transition id="icon" shape="plus" ></icon-transition>
+    </div>
+    <core-collapse id="content">
+      <content></content>
+    </core-collapse>
+  </template>
+  <script>
+  Polymer({
+    ready: function() {
+      if(this.expanded) {
+
+      } else {
+        this.expanded = false;
+      }
+    },
+    toggle: function(event, detail, sender) {
+      this.$.content.toggle();
+      this.expanded = !this.expanded;
+      if(this.expanded) {
+        this.$.icon.shape = 'cancel';
+      } else {
+        this.$.icon.shape = 'plus';
+      }
+    }
+  });
+  </script>
+</polymer-element>

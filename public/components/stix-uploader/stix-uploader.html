@@ -1,0 +1,62 @@
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-action-dialog.html">
+<link rel="import" href="/bower_components/ajax-form/ajax-form.html">
+<link rel="import" href="/bower_components/file-input/file-input.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+
+<polymer-element name="stix-uploader">
+  <template>
+    <style>
+
+    </style>
+    <paper-action-dialog heading="Upload STIX File" id="dialog" transition="core-transition-center" backdrop closeSelector="[dismissive]">
+      <form is="ajax-form" action="/reports" method="post" enctype="multipart/form-data" id="stix-form">
+        <div id="file-target">
+          <p id="target-text">Drag file here or click to choose.</p>
+          <file-input id="target-input" type="file" name="xml" maxFiles="1" required></file-input>
+          <paper-spinner id="target-spinner" active></paper-spinner>
+        </div>
+      </form>
+      <paper-button affirmative disabled id="save-upload" on-click="{{submit}}">Upload</paper-button>
+      <paper-button dismissive id="cancel-dialog">Done</paper-button>
+    </paper-action-dialog>
+  </template>
+  <script>
+    Polymer({
+      toggle: function() {
+        this.$.dialog.toggle();
+      },
+      ready: function() {
+        var csrfInput = document.createElement('input');
+        csrfInput.setAttribute('hidden', 'true');
+        csrfInput.setAttribute('value', window._token);
+        csrfInput.setAttribute('name', 'authenticity_token');
+        this.$['stix-form'].appendChild(csrfInput)
+        var that = this;
+        this.$['target-input'].addEventListener('change', function(e) {
+          that.$['save-upload'].removeAttribute('disabled');
+          that.$['target-text'].innerHTML = e.detail.valid[0].name;
+          that.$['dialog'].setAttribute('class', 'core-transition core-transition-center core-opened');
+        });
+        this.$['stix-form'].addEventListener('submitted', function(e) {
+          var resp = JSON.parse(e.detail.response);
+          if(resp.success) {
+            that.$['target-text'].innerText = "Success! Click or drag to upload another, or click Done to finish."
+            that.$['dialog'].setAttribute('class', 'core-transition core-transition-center core-opened success');
+          } else {
+            that.$['target-text'].innerText = "Error! Click or drag to upload another, or click Done to finish."
+            that.$['dialog'].setAttribute('class', 'core-transition core-transition-center core-opened error');
+          }
+          that.$['save-upload'].setAttribute('disabled', 'disabled');
+          that.$['cancel-dialog'].removeAttribute('disabled');
+        });
+      },
+      submit: function() {
+        this.$['stix-form'].submit();
+        this.$['dialog'].setAttribute('class', 'core-transition core-transition-center core-opened working');
+        this.$['cancel-dialog'].setAttribute('disabled', 'disabled');
+      }
+
+    })
+  </script>
+</polymer-element>

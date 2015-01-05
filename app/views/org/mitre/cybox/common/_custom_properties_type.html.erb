@@ -1,0 +1,6 @@
+<% object.properties.each do |property| %>
+  <p class="field-label">
+    <span class="lbl">[custom] <%= property.name + " " if lbl.present? %></span>
+    <span class="field"><%= property.value.to_s %></span>
+  </p>
+<% end %>

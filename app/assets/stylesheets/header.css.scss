@@ -1,0 +1,29 @@
+nav ol {
+  margin: 18px 0;
+  padding: 0;
+}
+
+nav ol li {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 24px;
+  color: white;
+  padding-left: 0;
+  opacity: 0.7;
+
+  &:last-child {
+    opacity: 1;
+  }
+
+  > core-icon {
+    margin-bottom: 1px;
+  }
+}
+
+core-scaffold > div.toolbar {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  bottom: 0;
+}

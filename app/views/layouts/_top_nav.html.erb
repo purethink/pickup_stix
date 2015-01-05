@@ -1,0 +1,5 @@
+<nav id="topnav" class="<%= component_color(@active_component, 'bgcolor') -%> col-md-12">
+  <ol>
+    <%= components.map {|comp| "<li>#{comp}</li>"}.join("<li><core-icon icon='chevron-right'></core-icon></li>").html_safe %>
+  </ol>
+</nav>

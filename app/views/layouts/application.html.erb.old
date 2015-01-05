@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @page_title || "pickupSTIX" %></title>
+    <meta name="viewport"
+    content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="<%= @page_description || 'pickupSTIX' %>">
+    <%= stylesheet_link_tag 'application' %>
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <%= render :partial => '/layouts/sidebar' %>
+
+    <div class="container-fluid" id="right-content">
+      <%= yield %>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="upload-modal" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button style="display: none;" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h2 class="modal-title" id="myModalLabel">Uploading&hellip;</h2>
+          </div>
+          <div class="modal-body">
+            <%= image_tag 'busy-indicator.gif' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%= javascript_include_tag 'application' %>
+  <%= yield(:javascript) %>
+</html>

@@ -1,0 +1,24 @@
+html,body,h1,h2,h3,h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+core-toolbar {
+  color: #aaa;
+  background-color: white;
+  border-bottom: 1px solid #aaa;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+stix-autocomplete {
+  display: block;
+  margin: 15px;
+  border: 1px solid #aaa;
+  color: #666;
+}

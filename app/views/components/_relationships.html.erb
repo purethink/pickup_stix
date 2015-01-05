@@ -1,0 +1,10 @@
+<stix-card component="<%= raw_component_title(relationships.first.labels.first).gsub('Type', '').downcase -%>">
+  <h2><%= lbl -%></h2>
+  <ul class="component-list">
+    <% relationships.each do |child| %>
+      <li>
+        <%= link_to(child.try(&:title) || "(Unknown)", component_path_for_class(child.id, child.labels.first)) %>
+      </li>
+    <% end %>
+  </ul>
+</stix-card>

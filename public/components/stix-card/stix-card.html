@@ -1,0 +1,49 @@
+<polymer-element name="stix-card" attributes="component" role="article">
+  <template>
+  <style>
+  :host {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .card-content {
+    padding: 15px 25px;
+  }
+
+  ::content h2 {
+    padding: 0 0 5px;
+    margin: 0;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .content {
+    margin-top: 10px;
+  }
+
+  paper-shadow {
+    background-color: white;
+    padding: 15px;
+  }
+
+  paper-shadow.with-border {
+    border-left: 10px solid;
+  }
+
+  </style>
+  <paper-shadow z="2" id="box">
+    <content select="h2"></content>
+    <div class="content">
+      <content></content>
+    </div>
+  </paper-shadow>
+</template>
+<script>
+Polymer({
+  ready: function() {
+    if(this.component) {
+      this.$.box.setAttribute('class', this.component + "-bordercolor with-border")
+    }
+  }
+});
+</script>
+</polymer-element>

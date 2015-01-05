@@ -1,0 +1,7 @@
+<ul class="generic-list">
+  <% items.each do |item| %>
+    <li>
+      <%= render_generic_template(item, lbl, heading_level) %>
+    </li>
+  <% end %>
+</ul>

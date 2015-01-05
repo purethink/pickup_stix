@@ -1,0 +1,15 @@
+<% content_for(:toolbar) do %>
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), @component.title] %>
+<% end %>
+
+<%= render '/components/header' %>
+
+<div id="double-column">
+  <% @out.each_with_index do |it, i| %>
+    <%= render '/components/relationships', :relationships => it[1], :lbl => translate_term(it[0]), :direction => :out if i % 2 == 1 %>
+  <% end %>
+
+  <% @out.each_with_index do |it, i| %>
+    <%= render '/components/relationships', :relationships => it[1], :lbl => translate_term(it[0]), :direction => :out if i % 2 == 0 %>
+  <% end %>
+</div>

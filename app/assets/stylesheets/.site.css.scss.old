@@ -1,0 +1,362 @@
+// Place all the styles related to the site controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1, h2, h3, h4, h5, body {
+  font-weight: 100;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+.field-label {
+  font-size: 18px;
+  padding: 5px 0;
+  margin-bottom: 0;
+  font-weight: normal;
+  overflow-wrap: break-word;
+  span.lbl {
+    font-weight: 100;
+    min-width: 150px;
+    display: inline-block;
+  }
+}
+
+.card-content > .content.auto-content {
+  margin-left: 0;
+}
+
+.content.auto-content {
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 20px;
+
+
+  ul {
+    padding-left: 0;
+  }
+
+  h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+  }
+
+  > p {
+    margin-left: 15px;
+    span.label {
+      padding: 0;
+    }
+  }
+}
+
+html,body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  background-color: #eee;
+}
+
+h1 {
+  color: #ccc;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+#sidebar {
+  color: #666;
+  background-color: white;
+
+  h1 {
+    border-bottom: 1px solid #aaa;
+    margin: 0;
+    padding: 20px;
+    color: #aaa;
+    font-weight: 100;
+    font-size: 24px;
+  }
+
+  #search-container {
+
+    margin: 20px;
+    width: 220px;
+  }
+
+  input {
+    border: 1px solid #aaa;
+    color: #666;
+    padding: 7px;
+  }
+
+  nav ul {
+
+    li {
+      padding-left: 20px;
+      list-style-type: none;
+      margin-bottom: 10px;
+      font-weight: 100;
+      font-size: 24px;
+      &.active a {
+        border-left: 5px solid;
+        margin-left: -10px;
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+#topnav {
+  padding: 16px 20px 16px 0;
+  border-bottom: 1px solid #aaa;
+
+  position: fixed;
+  left: 260px;
+  z-index: 4;
+  right: 0;
+
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol li {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 24px;
+    color: white;
+    padding-left: 0;
+    opacity: 0.7;
+    font-weight: normal;
+
+    &:before {
+      content: '\e080';
+      font-family: 'Glyphicons Halflings';
+      font-size: 0.8em;
+      margin-right: 20px;
+      opacity: 0.3;
+    }
+
+    &:first-child:before {
+      display: none;
+    }
+
+    &:last-child {
+      opacity: 1;
+
+    }
+  }
+}
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+li, ol {
+  list-style-type: none;
+}
+
+section.top-content {
+  padding: 20px;
+  border-left: 1px solid #aaa;
+  margin-left: -1px;
+
+  > section.content {
+    padding: 0;
+    border-left: 0;
+  }
+}
+
+section.content.relationships {
+  border-left: 5px solid;
+}
+
+.floatable {
+  float: left;
+  clear: none;
+}
+
+.report-type-header {
+  padding: 5px;
+  color: white;
+}
+
+#sidebar nav ul li.divider {
+  border-top: 1px solid #aaa;
+  padding: 20px 20px 0 0;
+  margin-top: 20px;
+}
+
+.centered {
+  float: none;
+  margin: auto;
+  text-align: center;
+  margin-top: 300px;
+}
+
+#sidebar .pretty-file {
+  position: relative;
+  .input-container {
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    input[type="file"] {
+      opacity: 0;
+      z-index: 2;
+      height: 35px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+  &:hover a {
+    text-decoration: underline;
+  }
+}
+
+#upload-modal .modal-content {
+  .busy-container {
+    margin: 50px auto;
+    text-align: center;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .success {
+    color: green;
+  }
+
+  p {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  h2 span {
+    position: relative;
+    top: 3px;
+  }
+}
+
+#upload-doc span {
+  position: relative;
+  top: 4px;
+  left: 3px;
+}
+
+p.message {
+  text-align: center;
+  font-size: 64px;
+  margin-top: 100px;
+  color: #ccc;
+}
+
+#right-content {
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 275px;
+  right: 0;
+  bottom: 0;
+}
+
+section.dashboard {
+  width: 30%;
+  margin-right: 3%;
+  display: inline-block;
+
+  h2 {
+    border-bottom: 0;
+    padding: 10px;
+    a, a:hover, a:visited, a:active {
+      color: white;
+    }
+  }
+
+  p.count {
+    font-size: 64px;
+  }
+}
+
+.reference-error {
+  .label {
+    margin-right: 5px;
+    position: relative;
+    top: -2px;
+  }
+}
+
+.indent {
+  padding-left: 10px;
+}
+
+.modal-header h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.col-md-12 > .content, .col-md-6 > .content {
+  padding: 0;
+  margin: 0;
+}
+
+.col-md-6 > .auto-content.relationships {
+  padding: 0 20px;
+  margin: 10px 0;
+}
+
+.auto-content.relationships > h4 {
+  margin-bottom: 10px;
+}
+
+.generic-list > li > p.field-label {
+  margin-left: 20px;
+}
+
+.card .message {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 25px;
+}
+
+.col-md-12 > section > section {
+  padding-left: 0;
+}
+
+.col-md-6 > section > section {
+  padding-left: 0;
+}
+
+.card {
+  width: 100%;
+  background-color: white;
+  border-left: 10px solid;
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  margin: 25px 0;
+  h2 {
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 5px;
+    padding: 15px 25px;
+  }
+}
+
+.card-content {
+  padding: 15px 25px;
+}
+
+.content-row {
+  width: 90%;
+}
+
+#main-content {
+  margin-top: 67px;
+}

@@ -1,0 +1,24 @@
+<% content_for(:toolbar) do %>
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), component_instance_title(@component)] %>
+<% end %>
+
+<%= render '/components/header' %>
+
+<div id="double-column">
+  <% if top_level_structures(@component) %>
+    <% top_level_structures(@component).each do |method| %>
+      <% object = @component.send(method); object = object.dereference if object.respond_to?(:idref) -%>
+      <% if object.present? %>
+        <% if object.respond_to?(:each) %>
+          <% object.each do |obj| %>
+            <%= render '/components/top_level_structure', :object => obj, :method => method.to_s %>
+          <% end %>
+        <% else %>
+          <%= render '/components/top_level_structure', :object => object, :method => method.to_s %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render '/components/generic_footer' %>
+</div>

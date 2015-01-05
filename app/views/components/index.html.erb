@@ -1,0 +1,23 @@
+<% content_for(:toolbar) do %>
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), 'Browse'] %>
+<% end %>
+
+<div id="double-column">
+  <% @components.each do |title, components| %>
+    <stix-card>
+      <h2><%= title -%></h2>
+      <section>
+        <ul class="component-list">
+          <% components.each do |component| %>
+            <li>
+              <%= link_to component_instance_title(component), component_path(component) -%>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    </stix-card>
+  <% end %>
+  <% if @components.length == 0 %>
+    <p class="message">Nothing to see here</p>
+  <% end %>
+</div>
