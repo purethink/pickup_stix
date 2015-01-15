@@ -37,6 +37,24 @@ module Serializer
     klass.send(:extend, Serializer::ClassMethods)
   end
 
+  def subheading
+    false
+  end
+
+  def process_tls(method)
+    if self.send(method).nil?
+      []
+    elsif self.send(method).respond_to?(:each)
+      self.send(method).map {|item| [method, item]}
+    else
+      [[method, self.send(method)]]
+    end
+  end
+
+  def process_basic_tls(methods)
+    methods.map {|m| process_tls(m)}.reject {|item| item.blank? }
+  end
+
   def persist!
     verify_id!
 

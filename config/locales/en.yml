@@ -42,3 +42,4 @@ en:
   organisationInfo: 'Organization Information'
   industryType: 'Industry'
   compressionsAndEncryptionsAndEncoding: "Compressions, Encryption, Encoding"
+  capecId: "CAPEC"

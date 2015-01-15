@@ -5,7 +5,7 @@ class Java::OrgMitreStixCoa::CourseOfActionType
   end
 
   def top_level_structures
-    [:parameter_observables, :structured_coa]
+    process_basic_tls([:parameter_observables, :structured_coa])
   end
 
   def self.collection_name

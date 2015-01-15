@@ -5,7 +5,7 @@ class Java::OrgMitreStixIncident::IncidentType
   end
 
   def top_level_structures
-    [:reporter, :responders, :coordinator, :victim, :affected_assets, :coa_requested, :coa_taken, :contact, :history]
+    process_basic_tls([:reporter, :responders, :coordinator, :victim, :affected_assets, :coa_requested, :coa_taken, :contact, :history])
   end
 
   def self.collection_name

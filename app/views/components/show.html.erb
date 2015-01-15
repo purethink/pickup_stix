@@ -6,19 +6,17 @@
 
 <div id="double-column">
   <% if top_level_structures(@component) %>
-    <% top_level_structures(@component).each do |method| %>
-      <% object = @component.send(method); object = object.dereference if object.respond_to?(:idref) -%>
+    <% top_level_structures(@component).each do |method, object| %>
+      <% object = object.dereference if object.respond_to?(:idref) -%>
       <% if object.present? %>
-        <% if object.respond_to?(:each) %>
-          <% object.each do |obj| %>
-            <%= render '/components/top_level_structure', :object => obj, :method => method.to_s %>
-          <% end %>
-        <% else %>
-          <%= render '/components/top_level_structure', :object => object, :method => method.to_s %>
-        <% end %>
+        <%= render '/components/top_level_structure', :object => object, :method => method %>
       <% end %>
     <% end %>
   <% end %>
+</div>
 
+<h1 class="embed">Relationships</h1>
+
+<div id="double-column">
   <%= render '/components/generic_footer' %>
 </div>

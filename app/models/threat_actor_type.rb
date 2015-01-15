@@ -4,7 +4,7 @@ class Java::OrgMitreStixTa::ThreatActorType
   end
 
   def top_level_structures
-    [:identity]
+    process_basic_tls([:identity])
   end
 
   def self.collection_name

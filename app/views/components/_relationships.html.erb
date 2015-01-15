@@ -1,5 +1,8 @@
 <stix-card component="<%= raw_component_title(relationships.first.labels.first).gsub('Type', '').downcase -%>">
-  <h2><%= lbl -%></h2>
+  <h2>
+    <%= lbl -%>
+    <core-icon icon="<%= direction == :in ? 'flip-to-front' : 'flip-to-back'%>"></core-icon>
+  </h2>
   <ul class="component-list">
     <% relationships.each do |child| %>
       <li>

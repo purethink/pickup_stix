@@ -1,5 +1,10 @@
 <stix-card>
-  <h2><%= translate_term(method.to_s) -%></h2>
+  <h2>
+    <%= translate_term(method.to_s) -%>
+    <% if object.subheading %>
+      <span class="subheading"><%= object.subheading %></span>
+    <% end %>
+  </h2>
   <% object.display_fields.each do |lbl, field| %>
     <%= render_generic_template(field, lbl, 3) %>
   <% end %>

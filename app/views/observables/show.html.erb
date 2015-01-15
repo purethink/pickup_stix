@@ -1,19 +1,16 @@
-<div class="row">
+<% content_for(:toolbar) do %>
   <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), component_instance_title(@component)] %>
-</div>
+<% end %>
 
-<div id="main-content">
-  <div class="row content-row">
-    <div class="col-md-12">
-      <div class="card observable-bordercolor">
-        <%= content_tag "h2", observable_type(@component) %>
-        <div class="card-content">
-          <%= render_observable(@component) %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render '/components/header' %>
 
+<div id="double-column">
+  <stix-card component="observable">
+    <h2><%= observable_type(@component) -%></h2>
+    <%= render_observable(@component) %>
+  </stix-card>
+</div>
+<h1 class="embed">Relationships</h1>
+<div id="double-column">
   <%= render '/components/generic_footer' %>
 </div>

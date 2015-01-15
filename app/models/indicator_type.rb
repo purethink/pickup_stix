@@ -4,7 +4,7 @@ class Java::OrgMitreStixIndicator::IndicatorType
   end
 
   def top_level_structures
-    [:sightings]
+    process_basic_tls([:sightings])
   end
 
   def self.collection_name
