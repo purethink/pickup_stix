@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
   end
 
   def components_path(type)
-    send("#{type.name.underscore.gsub('_type', '').pluralize}_path")
+    send("#{type.name.underscore.split('/').last.gsub('_type', '').pluralize}_path")
   end
   helper_method :components_path
 
   def component_path(type, id)
-    send("#{type.name.underscore.gsub('_type', '')}_path", id)
+    send("#{type.name.underscore.split('/').last.gsub('_type', '')}_path", id)
   end
 
   def translate_term(term)

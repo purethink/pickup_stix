@@ -9,7 +9,7 @@
       <%= render '/shared/generic_field', :lbl => 'Type', :object => t.value %>
     <% end %>
   <% end %>
-  <p class="description"><%= @component.description.value -%></p>
+  <p class="description"><%= @component.description.try(:value) -%></p>
 </stix-card>
 
 <div id="double-column">

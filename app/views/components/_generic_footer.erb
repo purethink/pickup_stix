@@ -2,5 +2,5 @@
   <%= render '/components/relationships', :relationships => relationships, :lbl => translate_term(key), :direction => :out %>
 <% end %>
 <% @in.each do |key, relationships| %>
-  <%= render '/components/relationships', :relationships => relationships, :lbl => "#{translate_term(relationships.first.labels.first.split('::').last)} (#{translate_term(key).singularize})", :direction => :in %>
+  <%= render '/components/relationships', :relationships => relationships, :lbl => "#{translate_term(relationships.first['@@class'].split('::').last)} (#{translate_term(key).singularize})", :direction => :in %>
 <% end %>
