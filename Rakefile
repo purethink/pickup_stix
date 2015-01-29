@@ -5,15 +5,18 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
+Rails.env ||= 'development'
+
 namespace :db do
   task :reset do
     mongo_client = Mongo::MongoClient.new
-
-    neography = Neography::Rest.new(
-      :directory => "stix-#{Rails.env}"
-    )
     
-    neography.execute_query("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r")
+    neo_session = Neo4j::Session.open(:server_db)
+    
+    stix = Neo4j::Label.create(:stix)
+    stix.create_index :stix_id
+    
+    Neo4j::Session.query("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r")
     mongo_client.drop_database("stix-#{Rails.env}")
   end
 end

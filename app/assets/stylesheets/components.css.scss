@@ -65,8 +65,14 @@ ul.component-list li {
   margin: 0;
 }
 
-#double-column {
+.double-column {
   -webkit-columns: 300px 2;
   -moz-columns: 300px 2;
   columns: 300px 2;
+}
+
+h1.embedded {
+  color: #666;
+  font-size: 36px;
+  margin: 24px auto;
 }

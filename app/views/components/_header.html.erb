@@ -1,9 +1,11 @@
 <stix-card class="full">
   <h2><%= component_instance_title(@component) %></h2>
   <% @component.display_fields.each do |lbl, field| %>
-    <%= render_generic_template(field, lbl, 3) %>
+    <%= render_generic_template(field, lbl, 3) unless lbl.to_s.downcase == 'description' %>
   <% end %>
   <% if @component.description %>
-    <p class="description"><%= @component.description.value -%></p>
+    <% @component.description.value.split("\n").each do |para| %>
+      <p class="description"><%= para -%></p>
+    <% end %>
   <% end %>
 </stix-card>

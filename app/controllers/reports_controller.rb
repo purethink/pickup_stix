@@ -22,7 +22,7 @@ class ReportsController < ComponentsController
       end
       if error.nil?
         begin
-          stix.persist!
+          stix.save
         rescue Exception => e
           puts e.message
           puts e.backtrace.join("\n")

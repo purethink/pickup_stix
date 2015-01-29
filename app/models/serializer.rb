@@ -11,6 +11,7 @@ module Serializer
   end
   
   def save
+    
     # Create the vertex if it doesn't exist already
     self.generate_id! if self.id.nil?
     document = {}
@@ -37,24 +38,27 @@ module Serializer
   
   def relationships(direction = nil)
     if direction.present?
-      relationships = $neography.get_node_relationships(node, direction)
+      relationships = node.rels(:dir => direction).to_a
     else
-      relationships = $neography.get_node_relationships(node)
+      relationships = node.rels.to_a
     end
     relationships.inject({}) do |coll, obj|
       coll[obj['type']] ||= []
-      if obj['end'].split('/').last == node.neo_id
-        coll[obj['type']] << Neography::Node.load(obj['start'])
+      if obj.end_node.neo_id == node.neo_id
+        coll[obj['type']] << obj.start_node
       else
-        coll[obj['type']] << Neography::Node.load(obj['end'])
+        coll[obj['type']] << obj.end_node
       end
       coll
     end
   end
 
   def add_relationship(to, descriptor)
-    to_node = to.respond_to?(:node) ? to.node : to
-    $neography.create_relationship(descriptor, self.node, to_node)
+    to_node = to.kind_of?(Neo4j::Node) ? to : to.node
+    if self.node.rels(:dir => :outgoing, :between => to_node).to_a.length < 1
+      puts "Adding relationship between #{self.node} and #{to_node}"
+      relationship = Neo4j::Relationship.create('stix', self.node, to_node, {'type' => descriptor})
+    end
   end
   
   def mongo_collection
@@ -62,9 +66,12 @@ module Serializer
   end
   
   module ClassMethods
-    def find_node(id_string)
+    def find_node(id_string, title = nil)
       begin
-        Neography::Node.find('stix', 'stix_id', id_string)
+        node = Neo4j::Label.find_nodes(:stix, :stix_id, id_string).first
+        node['title'] = title if title.present?
+        
+        return node
       rescue
         nil
       end
@@ -88,9 +95,7 @@ module Serializer
     end
 
     def create_node(id_string, title = nil)
-      node = Neography::Node.create({"stix_id" => id_string, "title" => title, "@@class" => collection_name}, $neography)
-      node.add_to_index('stix', 'stix_id', id_string)
-      return node
+      Neo4j::Node.create({"stix_id" => id_string, "title" => title, "class" => collection_name}, :stix)
     end
     
     def create(args = {})
@@ -125,7 +130,7 @@ module Serializer
       mongo_objects.map do |mongo_object|
         obj = self.new(mongo_object.except('_id', '@@class'))
         obj.document = mongo_object
-        obj.node = Neography::Node.find("node_id_index", "id", mongo_object.id, $neography) rescue nil
+        obj.node = Neo4j::Node.find("node_id_index", "id", mongo_object.id) rescue nil
         obj
       end
     end
@@ -147,7 +152,7 @@ module Serializer
     end
     
     def find_or_create_node(id_string, title = nil)
-      find_node(id_string) || create_node(id_string, title)
+      find_node(id_string, title) || create_node(id_string, title)
     end
   end
 end

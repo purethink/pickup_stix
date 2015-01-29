@@ -1,9 +1,9 @@
-<stix-card component="<%= raw_component_title(relationships.first['@@class']).gsub('Type', '').gsub('Base', '').downcase -%>">
+<stix-card component="<%= raw_component_title(relationships.first['class']).gsub('Type', '').gsub('Base', '').downcase -%>">
   <h2><%= lbl -%></h2>
   <ul class="component-list">
     <% relationships.each do |child| %>
       <li>
-        <%= link_to(child.try(&:title) || "(Unknown)", component_path_for_class(child.stix_id, child['@@class'])) %>
+        <%= link_to(child['title'] || "(Unknown)", component_path_for_class(child['stix_id'], child['class'])) %>
       </li>
     <% end %>
   </ul>

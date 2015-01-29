@@ -4,21 +4,35 @@
 
 <%= render '/components/header' %>
 
-<div id="double-column">
+<div class="double-column">
   <% if top_level_structures(@component) %>
     <% top_level_structures(@component).each do |method| %>
-      <% object = @component.send(method); object = object.dereference if object.respond_to?(:idref) -%>
-      <% if object.present? %>
-        <% if object.respond_to?(:each) %>
-          <% object.each do |obj| %>
-            <%= render '/components/top_level_structure', :object => obj, :method => method.to_s %>
+      <% if method.kind_of?(Symbol) %>
+        <% object = @component.send(method); object = object.dereference if object.respond_to?(:idref) -%>
+        <% if object.present? %>
+          <% if object.respond_to?(:each) %>
+            <% object.each do |obj| %>
+              <%= render '/components/top_level_structure', :object => obj, :method => method.to_s %>
+            <% end %>
+          <% else %>
+            <%= render '/components/top_level_structure', :object => object, :method => method.to_s %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if method[:object].respond_to?(:each) %>
+          <% method[:object].each do |obj| %>
+            <%= render '/components/top_level_structure', :object => method[:object], :method => method[:label] %>
           <% end %>
         <% else %>
-          <%= render '/components/top_level_structure', :object => object, :method => method.to_s %>
+          <%= render '/components/top_level_structure', :object => method[:object], :method => method[:label] %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
+</div>
 
+<h1 class="embedded">Relationships</h1>
+
+<div class="double-column">
   <%= render '/components/generic_footer' %>
 </div>

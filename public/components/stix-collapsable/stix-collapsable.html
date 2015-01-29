@@ -1,6 +1,6 @@
 <link href="/bower_components/core-collapse/core-collapse.html" rel="import">
 <link href="/bower_components/icon-transition/icon-transition.html" rel="import">
-<polymer-element name="stix-collapsable" attributes="heading expanded">
+<polymer-element name="stix-collapsable" attributes="heading subheading expanded">
   <template>
     <style>
       :host {
@@ -23,12 +23,13 @@
 
       .subheading {
         opacity: 0.5;
+        margin-left: 10px;
       }
 
       icon-transition {
         position: absolute;
         right: 0;
-        top: -1px;
+        top: -6px;
       }
     </style>
     <div id="toggle" on-click="{{toggle}}">

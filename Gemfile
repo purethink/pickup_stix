@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Neo for graphs and mongo for docs
-gem 'neography'
+gem 'neo4j-core'
 gem 'mongo'
 
 # Polymer for fancy web components

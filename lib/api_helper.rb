@@ -26,6 +26,10 @@ class Java::OrgMitre::ApiHelper
     placeholder = child.class.create(:id => child.idref)
   end
   
+  def subtitle
+    ''
+  end
+  
   def build_hash(parent, handled_relationship = false)
     self.annotate_class!
     hash = {'@@class' => self.class.to_s}

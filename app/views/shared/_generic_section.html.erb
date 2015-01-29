@@ -1,4 +1,4 @@
-<% if lbl.present? %><stix-collapsable class="auto-content content" heading="<%= translate_term(lbl) -%>"><% end %>
+<% if lbl.present? %><stix-collapsable class="auto-content content" heading="<%= translate_term(lbl) -%>" subheading="<%= object.subtitle -%>"><% end %>
   <% object.display_fields.each do |lbl, field| %>
     <% if lbl.nil? || (object.display_fields.length == 1 && heading_level > 2 && !field.kind_of?(String)) %>
       <%= render_generic_template(field, nil, heading_level) %>

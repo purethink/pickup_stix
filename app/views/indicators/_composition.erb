@@ -1,5 +1,5 @@
 <section class="content">
-  <ul class="component-list indicator-color">
+  <ul class="component-list">
     <% expression.indicators.each do |indicator| %>
       <li><%= link_to indicator.dereference.title, component_path(indicator) %></li>
     <% end %>

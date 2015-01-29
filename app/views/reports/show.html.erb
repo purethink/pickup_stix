@@ -4,7 +4,7 @@
 
 <%= render '/components/header' %>
 
-<div id="double-column">
+<div class="double-column">
   <% @out.each_with_index do |it, i| %>
     <%= render '/components/relationships', :relationships => it[1], :lbl => translate_term(it[0]), :direction => :out if i % 2 == 1 %>
   <% end %>

@@ -12,22 +12,24 @@
   <p class="description"><%= @component.description.try(:value) -%></p>
 </stix-card>
 
-<div id="double-column">
+<div class="double-column">
   <%= render '/indicators/pattern', :indicator => @component, :heading_level => 2 %>
   <stix-card component="ttp">
     <h2>Indicated TTPs</h2>
-    <% if @out['indicated_ttps'] %>
-      <ul class="component-list ttp-color">
-        <% @out['indicated_ttps'].each do |child| %>
-        <li>
-          <%= link_to(child.try(&:title) || "(Unknown)", component_path_for_class(child.id, child.labels.first)) %>
-        </li>
-        <% end %>
-      </ul>
+    <% if out = @out.delete('indicated_ttps') %>
+        <ul class="component-list">
+          <% out.each do |child| %>
+          <li>
+            <%= link_to(child['title'] || "(Unknown)", component_path_for_class(child['stix_id'], child['class'])) %>
+          </li>
+          <% end %>
+        </ul>
     <% else %>
       <p class="message">No Indicated TTPs</p>
     <% end %>
   </stix-card>
-
+</div>
+<h1 class="embedded">Relationships</h1>
+<div class="double-column">
   <%= render '/components/generic_footer' %>
 </div>

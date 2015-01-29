@@ -1,1 +1,1 @@
-Dir.glob("lib/moxy/*.jar").each {|f| require f}
+#Dir.glob("lib/moxy/*.jar").each {|f| require f}

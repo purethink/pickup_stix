@@ -16,11 +16,11 @@ module ComponentsHelper
   end
 
   def component_path(component)
-    send("#{component.class.name.underscore.gsub('_type','').gsub('_base', '')}_path", id_string(component.id || component.idref))
+    send("#{component.class.name.underscore.split('/').last.gsub('_type','').gsub('_base', '')}_path", id_string(component.id || component.idref))
   end
 
   def component_path_for_class(id, klass)
-    send("#{klass.split('::').last.underscore.gsub('_type', '').gsub('_base', '')}_path", id)
+    send("#{klass.split('::').last.underscore.split('/').last.gsub('_type', '').gsub('_base', '')}_path", id)
   end
 
   def component_color(type, postfix="color")
