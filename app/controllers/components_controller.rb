@@ -5,19 +5,21 @@ class ComponentsController < ApplicationController
   def index
     @components = klass.all
   end
-  
+
   def stix
     p = STIXPackage.new
     p.stix_header = org.mitre.stix.core.STIXHeaderType.new
     p.stix_header.title = "Export from pickup-stix"
     @component = klass.find(params[:id])
-    
+
     p.send("add_#{@component.class.name.split('::').last.gsub('Type', '').underscore}", @component)
-    
+
     render :xml => p.to_xml
   end
 
   def show
+    stix and return if request.format == :xml
+
     @component = klass.find(params[:id])
     @out = @component.relationships(:outgoing)
     @out = Hash[@out.reject {|k,v| blacklisted_relationship?(k, :out)}.sort_by {|k, v| v.length}]

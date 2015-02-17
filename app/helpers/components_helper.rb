@@ -15,8 +15,8 @@ module ComponentsHelper
     component.title || "(Untitled #{component_title(component.class)})".html_safe
   end
 
-  def component_path(component)
-    send("#{component.class.name.underscore.split('/').last.gsub('_type','').gsub('_base', '')}_path", id_string(component.id || component.idref))
+  def component_path(component, args={})
+    send("#{component.class.name.underscore.split('/').last.gsub('_type','').gsub('_base', '')}_path", id_string(component.id || component.idref), args)
   end
 
   def component_path_for_class(id, klass)

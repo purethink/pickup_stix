@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :reports
+
+  get "queries/:action" => "queries"
 end

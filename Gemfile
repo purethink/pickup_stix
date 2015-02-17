@@ -24,9 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'neo4j-core'
 gem 'mongo'
 
-# Polymer for fancy web components
-
-
 # SHUT UP ASSETS JUST SHUT UP
 gem 'quiet_assets'
 

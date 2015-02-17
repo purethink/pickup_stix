@@ -1,22 +1,11 @@
 require 'ruby_stix/api'
+include StixRuby::Aliases
 
 require 'lib/api_helper'
-require 'app/models/qname'
-require 'app/models/campaign_type'
-require 'app/models/course_of_action_type'
-require 'app/models/exploit_target_type'
-require 'app/models/incident_type'
-require 'app/models/observable_type'
-require 'app/models/stix_type'
-require 'app/models/threat_actor_type'
-require 'app/models/ttp_type'
-require 'app/models/indicator_type'
-require 'app/models/courses_of_action_type'
-require 'app/models/related_object_type'
+require 'app/models/serializer'
 
 Dir.glob('app/models/org/**/*.rb').each {|f| require(f)}
-
-include StixRuby::Aliases
+Dir.glob('app/models/javax/**/*.rb').each {|f| require(f)}
 
 COMPONENT_TYPES = {
   'Campaigns'         => Campaign,
@@ -47,4 +36,4 @@ end
 
 # Add some indices
 COMPONENT_TYPES.values.each {|klass| klass.mongo_collection.ensure_index({title: 'text'})}
-#STIXPackage.mongo_collection.ensure_index({'stix_header.title' => 'text'})
+STIXPackage.mongo_collection.ensure_index({'stix_header.title' => 'text'})

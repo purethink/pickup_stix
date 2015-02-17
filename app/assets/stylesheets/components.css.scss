@@ -32,10 +32,24 @@ ul, li {
 .field-label {
   font-size: 18px;
   padding: 5px 0;
+  margin-left: 10px;
+  border-left: 3px solid #ddd;
+  padding-left: 10px;
   margin-bottom: 0;
   font-weight: normal;
   overflow-wrap: break-word;
   position: relative;
+
+  &:first-child,  {
+    padding-top: 0;
+    margin-top: 10px;
+  }
+
+  &:last-child,  {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
   span.lbl {
     display: block;
     width: 130px;
@@ -75,4 +89,35 @@ h1.embedded {
   color: #666;
   font-size: 36px;
   margin: 24px auto;
+}
+
+p.message {
+  text-align: center;
+  color: #aaa;
+  font-size: 18px;
+}
+
+#actions, #markings {
+  display: inline-block;
+  paper-button {
+    color:#337ab7;
+
+    core-icon {
+      position: relative;
+      top: -2px;
+      margin-right: 5px;
+    }
+  }
+}
+
+#markings {
+  float: right;
+}
+
+.footer {
+  background-color: #eee;
+  position: relative;
+  left: -15px;
+  width: calc(100% + 30px);
+  bottom: -7px;
 }

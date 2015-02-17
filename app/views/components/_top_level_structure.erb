@@ -1,6 +1,13 @@
 <stix-card>
   <h2><%= translate_term(method.to_s) -%></h2>
+
+  <% if object.respond_to?(:description) && object.description.present? %>
+    <% object.description.value.split("\n").each do |para| %>
+      <p class="description"><%= para -%></p>
+    <% end %>
+  <% end %>
+
   <% object.display_fields.each do |lbl, field| %>
-    <%= render_generic_template(field, lbl, 3) %>
+    <%= render_generic_template(field, lbl, 3) unless lbl == 'description' %>
   <% end %>
 </stix-card>

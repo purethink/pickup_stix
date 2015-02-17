@@ -2,7 +2,7 @@
   <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), 'Browse'] %>
 <% end %>
 
-<div id="double-column">
+<div class="double-column">
   <% @components.each do |title, components| %>
     <stix-card>
       <h2><%= title -%></h2>
@@ -17,7 +17,8 @@
       </section>
     </stix-card>
   <% end %>
-  <% if @components.length == 0 %>
-    <p class="message">Nothing to see here</p>
-  <% end %>
 </div>
+
+<% if @components.length == 0 %>
+  <p class="message">Nothing to see here</p>
+<% end %>

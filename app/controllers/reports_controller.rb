@@ -5,6 +5,11 @@ class ReportsController < ComponentsController
     @components['Other'] = @components.delete(nil) if @components[nil]
   end
 
+  def stix
+    @component = klass.find(params[:id])
+    render :xml => @component.to_xml
+  end
+
   def show
     super
   end
