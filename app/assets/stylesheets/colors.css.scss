@@ -1,3 +1,11 @@
+body /deep/ .generic-color {
+  color: #333;
+  border-color: #aaa !important;
+  &:hover, &:active, &:visited {
+    color: #333;
+  }
+}
+
 body /deep/ .campaign-color {
   color: #145c90;
   border-color: #145c90 !important;
@@ -71,6 +79,10 @@ body /deep/ .exploittarget-color {
 }
 
 /* Background color */
+
+body /deep/ .generic-bgcolor {
+  background-color: rgba(100,100,100, 1);
+}
 
 body /deep/ .campaign-bgcolor {
   background-color: rgba(20,92,144, 1);

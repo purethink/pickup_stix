@@ -9,10 +9,23 @@
         <% COMPONENT_TYPES.each do |label, val| %>
           <li><a href="<%= components_path(val) -%>"><paper-button class="<%= component_color(val) -%>"><%= label %></paper-button></a></li>
         <% end %>
+        <li class="divider"><hr /></li>
+        <li><a href="/preferences"><paper-button>Preferences</paper-button></a></li>
+        <li><a href="/sign_out"><paper-button>Sign Out</paper-button></a></li>
       </ul>
     </core-menu>
   </nav>
-  <paper-fab icon="file-upload" title="create" role="button" tabindex="0" aria-label="create" id="upload"></paper-fab>
+  <paper-fab icon="cloud-upload" title="create" role="button" tabindex="0" aria-label="create" id="upload"></paper-fab>
 </div>
 
 <stix-uploader id="upload-dialog"></stix-uploader>
+
+<% content_for :javascript do %>
+<script>
+  $(document).ready(function() {
+    $('#expand-components').click(function() {
+      $('.component-item').toggle('slide');
+    });
+  });
+</script>
+<% end %>

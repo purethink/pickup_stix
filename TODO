@@ -7,3 +7,5 @@ Feature brainstorming:
   * Ability to export package
 * Data markings and information source in bottom right of header
   * Only support TLP and Statements
+* Unique index on mongo collection
+* 

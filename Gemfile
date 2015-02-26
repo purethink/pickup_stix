@@ -21,8 +21,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Neo for graphs and mongo for docs
-gem 'neo4j-core'
-gem 'mongo'
+gem 'neo4j-core', "~> 3.0.0"
+gem "mongoid", "~> 4.0.0"
+
+# Auth
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'omniauth-identity'
 
 # SHUT UP ASSETS JUST SHUT UP
 gem 'quiet_assets'

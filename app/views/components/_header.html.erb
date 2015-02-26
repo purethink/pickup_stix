@@ -11,7 +11,7 @@
   <div class="footer">
     <div id="actions">
       <paper-button><core-icon icon="gesture"></core-icon> Find Connections</paper-button>
-      <paper-button><core-icon icon="bookmark-outline"></core-icon> Save to Favorites</paper-button>
+      <stix-bookmark component-id="<%= @component._id-%>" component-type="<%= @component.class-%>" bookmark="<%= current_user.has_bookmark?(@component)-%>"></stix-bookmark>
       <a href="<%= component_path(@component, :format => 'xml') -%>" target="_blank"><paper-button><core-icon icon="cloud-download"></core-icon> Export to XML</paper-button></a>
     </div>
     <div id="markings">

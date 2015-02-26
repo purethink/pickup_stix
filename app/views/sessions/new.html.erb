@@ -1,0 +1,30 @@
+<h2>Login</h2>
+
+<% if params[:invalid] == 'true' %>
+  <div class="error_messages"><h2>Incorrect e-mail or password. Please try again.</h2></div>
+<% end %>
+
+<%= form_tag "/auth/identity/callback" do %>
+  <paper-input-decorator floatingLabel label="E-mail address">
+    <%= text_field_tag :auth_key, '' %>
+  </paper-input-decorator>
+  <paper-input-decorator floatingLabel label="Password">
+    <%= password_field_tag :password, '' %>
+  </paper-input-decorator>
+  <div class="primary-actions">
+    <paper-button id="login" class="link">Login</paper-button>
+  </div>
+  <ul class="secondary-actions">
+    <li><%= link_to 'Create Account', new_identity_path %></li>
+    <li><%= link_to 'Lost Password', new_identity_path %></li>
+  </ul>
+  <br style="clear: both;" />
+<% end %>
+
+<% content_for :javascript do %>
+<script>
+$(document).ready(function() {
+  $('#login').click(function() {$('form').submit()})
+})
+</script>
+<% end %>

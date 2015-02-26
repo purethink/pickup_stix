@@ -1,0 +1,18 @@
+.error_messages {
+  padding: 0;
+  margin: 0 0 10px;
+
+  h2 {
+    margin: 0;
+    color: #a00 !important;
+    padding-top: 0 !important;
+    font-size: 18px;
+  }
+
+  ul li {
+    border-left: 2px solid #a00;
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #a00 !important;
+  }
+}

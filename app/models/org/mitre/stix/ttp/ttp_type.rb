@@ -1,4 +1,4 @@
-class OrgMitreStixTtp::TTPType
+class Java::OrgMitreStixTtp::TTPType
   def display_fields
     process_display_fields([:description, :kill_chains, :intended_effects])
   end
@@ -45,7 +45,7 @@ class OrgMitreStixTtp::TTPType
   end
 end
 
-class OrgMitreStixTtp::MalwareType
+class Java::OrgMitreStixTtp::MalwareType
   def display_fields
     fields = {}
     malware_instances

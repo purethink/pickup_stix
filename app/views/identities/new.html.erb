@@ -1,0 +1,41 @@
+<h2>Register New Account</h2>
+
+<%= form_tag "/auth/identity/register" do %>
+  <% if @identity && @identity.errors.any? %>
+    <div class="error_messages">
+      <h2>Sorry, <%= pluralize(@identity.errors.count, "error") %> prohibited this account from being created:</h2>
+      <ul>
+      <% @identity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <paper-input-decorator floatingLabel autoValidate error="Full name is required" label="Full Name">
+    <%= text_field_tag :name, @identity.try(:name), :required => 'true' %>
+  </paper-input-decorator>
+  <paper-input-decorator floatingLabel label="E-mail Address">
+    <%= text_field_tag :email, @identity.try(:email) %>
+  </paper-input-decorator>
+  <paper-input-decorator floatingLabel label="Password">
+    <%= password_field_tag :password , '' %>
+  </paper-input-decorator>
+  <paper-input-decorator floatingLabel label="Password Confirmation">
+    <%= password_field_tag :password_confirmation, '' %>
+  </paper-input-decorator>
+  <div class="primary-actions">
+    <paper-button raised id="register" class="link">Create Account</paper-button>
+  </div>
+  <ul class="secondary-actions">
+    <li>Already have an account? <%= link_to 'Sign in.', signin_path -%></li>
+  </ul>
+  <br style="clear: both;">
+<% end %>
+
+<% content_for :javascript do %>
+<script>
+$(document).ready(function() {
+  $('#register').click(function() {$('form').submit()})
+})
+</script>
+<% end %>

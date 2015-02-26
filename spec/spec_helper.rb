@@ -78,14 +78,12 @@ RSpec.configure do |config|
 
   config.before(:all) do
     Neo4j::Session.query("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r")
-    $mongo_client.drop_database('cycs-test')
-    $mongo_db = $mongo_client["cycs-#{Rails.env}"]
+    $mongo_db.drop
   end
 
   config.around(:each) do |example|
     example.run
     Neo4j::Session.query("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r")
-    $mongo_client.drop_database('cycs-development')
-    $mongo_db = $mongo_client["cycs-#{Rails.env}"]
+    $mongo_db.drop
   end
 end

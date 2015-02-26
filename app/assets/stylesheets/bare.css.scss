@@ -1,0 +1,39 @@
+body.bare {
+  background-color: #eee;
+
+  h1 {
+    color: #aaa;
+    font-size: 32px;
+    margin: 32px auto;
+  }
+}
+
+#bare-content {
+  width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 25px;
+
+  h2 {
+    padding: 12px 0;
+    text-align: center;
+    color: black;
+  }
+
+  .primary-actions {
+    float: left;
+    padding: 0;
+    margin: 25px 0 0;
+  }
+
+  .secondary-actions {
+    float: right;
+    text-align: right;
+    margin: 25px 0 0;
+    line-height: 1.5;
+  }
+
+  paper-button {
+    margin: 0;
+  }
+}

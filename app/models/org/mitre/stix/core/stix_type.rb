@@ -1,7 +1,7 @@
 class Java::OrgMitreStixCore::STIXType
 
-  def self.name
-    "Report"
+  def self.human_name
+    "report"
   end
 
   def package_intents

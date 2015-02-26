@@ -1,4 +1,2 @@
-$mongo_client = Mongo::MongoClient.new
-$mongo_db = $mongo_client["stix-#{Rails.env}"]
-
+$mongo_db = Mongoid.default_session
 $neo_session = Neo4j::Session.open(:server_db)

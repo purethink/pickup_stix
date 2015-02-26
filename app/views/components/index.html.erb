@@ -1,5 +1,5 @@
 <% content_for(:toolbar) do %>
-  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name), 'Browse'] %>
+  <%= render '/layouts/top_nav', :components => [component_title(@active_component.name).pluralize, 'Browse'] %>
 <% end %>
 
 <div class="double-column">

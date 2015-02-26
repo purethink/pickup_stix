@@ -21,11 +21,12 @@ class ComponentsController < ApplicationController
     stix and return if request.format == :xml
 
     @component = klass.find(params[:id])
+    raise "Component not found: #{params[:id]}" if @component.nil?
     @out = @component.relationships(:outgoing)
     @out = Hash[@out.reject {|k,v| blacklisted_relationship?(k, :out)}.sort_by {|k, v| v.length}]
+    puts "Mapped"
     @in = @component.relationships(:incoming)
     @in = Hash[@in.reject {|k,v| blacklisted_relationship?(k, :in)}.sort_by {|k, v| v.length}]
-    raise "Component not found: #{params[:id]}" if @component.nil?
   end
 
   private

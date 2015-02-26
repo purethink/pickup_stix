@@ -1,0 +1,63 @@
+<link href="/bower_components/paper-button/paper-button.html" rel="import">
+<link href="/bower_components/core-icon/core-icon.html" rel="import">
+<polymer-element name="stix-bookmark" attributes="bookmark component-id component-type">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        min-width: 170px;
+      }
+
+      paper-button {
+        color: #337ab7;
+      }
+
+      paper-button core-icon {
+        position: relative;
+        top: -2px;
+        margin-right: 5px;
+      }
+    </style>
+    <paper-button on-click="{{toggle}}"><core-icon id="icon" icon="bookmark-outline"></core-icon> <span id="favText">Bookmark</span></paper-button>
+  </template>
+  <script>
+  Polymer({
+    ready: function() {
+      this.bookmark = this.bookmark == "true";
+      this.refresh();
+    },
+    toggle: function(event, detail, sender) {
+      var method, url;
+
+      if(this.bookmark) {
+        method = 'delete';
+        url = "/preferences/bookmarks/" + this['component-id'] + "?class=" + this['component-type'];
+      } else {
+        method = 'post';
+        url = "/preferences/bookmarks?class=" + this['component-type'] + "&id=" + this['component-id'];
+      }
+
+      var that = this;
+
+      $.ajax({
+        url: url,
+        type: method,
+        dataType: "json",
+        success: function(resp) {
+          that.bookmark = !that.bookmark;
+          that.refresh();
+        }
+      })
+    },
+    refresh: function() {
+      if(this.bookmark) {
+        this.$.favText.innerHTML = "Bookmarked";
+        this.$.icon.icon = "bookmark";
+      } else {
+        this.$.favText.innerHTML = "Bookmark";
+        this.$.icon.icon = "bookmark-outline";
+      }
+    }
+  });
+  </script>
+</polymer-element>

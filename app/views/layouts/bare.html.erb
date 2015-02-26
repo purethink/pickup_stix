@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= @page_title || "pickupSTIX" %></title>
+  <meta name="viewport"
+  content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="<%= @page_description || 'pickupSTIX' %>">
+  <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="/bower_components/font-roboto/roboto.html">
+  <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html">
+  <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="/bower_components/core-menu/core-menu.html">
+  <link rel="import" href="/bower_components/core-item/core-item.html">
+  <link rel="import" href="/bower_components/paper-input/paper-input.html">
+  <link rel="import" href="/bower_components/core-icons/core-icons.html">
+  <link rel="import" href="/bower_components/ordered-columns/ordered-columns.html">
+  <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+  <link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+  <link rel="import" href="/bower_components/paper-button/paper-button.html">
+  <link rel="import" href="/components/stix-uploader/stix-uploader.html">
+  <link rel="import" href="/components/micro-stix-component/micro-stix-component.html">
+  <link rel="import" href="/components/stix-card/stix-card.html">
+  <link rel="import" href="/components/stix-collapsable/stix-collapsable.html">
+  <link rel="import" href="/components/stix-autocomplete/stix-autocomplete.html">
+  <%= stylesheet_link_tag 'application' %>
+</head>
+
+<body class="bare" unresolved>
+  <h1>pickupSTIX</h1>
+  <paper-shadow z="2" id="bare-content">
+    <%= yield %>
+  </paper-shadow>
+</body>
+<%= javascript_include_tag 'application' %>
+<%= yield(:javascript) %>
+<script>
+  window._token = '<%= form_authenticity_token %>';
+</script>
+</html>

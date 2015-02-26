@@ -2,17 +2,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :authorize!
 
-  before_filter do
-    load 'app/models/qname.rb'
-    load 'app/models/campaign_type.rb'
-    load 'app/models/course_of_action_type.rb'
-    load 'app/models/exploit_target_type.rb'
-    load 'app/models/incident_type.rb'
-    load 'app/models/observable_type.rb'
-    load 'app/models/stix_type.rb'
-    load 'app/models/threat_actor_type.rb'
-    load 'app/models/ttp_type.rb'
+  def self.klass
+    'generic'
+  end
+
+  def klass
+    'generic'
   end
 
   private
@@ -22,12 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   def components_path(type)
-    send("#{type.name.underscore.split('/').last.gsub('_type', '').pluralize}_path")
+    send("#{type.human_name.pluralize}_path")
   end
   helper_method :components_path
 
   def component_path(type, id)
-    send("#{type.name.underscore.split('/').last.gsub('_type', '')}_path", id)
+    send("#{type.human_name}_path", id)
   end
 
   def translate_term(term)
@@ -55,4 +52,18 @@ class ApplicationController < ActionController::Base
     id.prefix.present? ? "#{id.prefix}:#{id.local_part}" : id.local_part
   end
   helper_method :id_string
+
+  def authorize!
+    redirect_to signin_path unless current_user
+  end
+
+  def current_user
+    @current_user ||= User.where(:_id => session[:user_id]['$oid']).first if session[:user_id]
+  end
+  helper_method :current_user
+
+  # Render a not found error
+  def not_found(message = "Not Found")
+    raise ActionController::RoutingError.new(message)
+  end
 end
