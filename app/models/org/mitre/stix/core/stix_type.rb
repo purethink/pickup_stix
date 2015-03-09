@@ -23,4 +23,23 @@ class Java::OrgMitreStixCore::STIXType
   def display_fields
     process_display_fields([])
   end
+
+  def information_source
+    self.stix_header.try(:information_source)
+  end
+
+  def information_source=(val)
+    self.stix_header ||= org.mitre.stix.core.STIXHeaderType.new
+    self.stix_header.information_source = val
+  end
+
+  def handling
+    self.stix_header.try(:handling)
+  end
+
+  def handling=(val)
+    self.stix_header ||= org.mitre.stix.core.STIXHeaderType.new
+    self.stix_header.handling = val
+  end
+
 end

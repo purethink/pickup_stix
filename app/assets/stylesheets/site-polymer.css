@@ -1,6 +1,10 @@
 html,body,h1,h2,h3,h4 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 300;
 }
 
 core-toolbar {
@@ -21,4 +25,12 @@ stix-autocomplete {
   margin: 15px;
   border: 1px solid #aaa;
   color: #666;
+}
+
+a {
+  transition: color 0.5s;
+}
+
+a:active, a:hover {
+  text-decoration: none;
 }

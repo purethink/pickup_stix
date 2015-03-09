@@ -6,6 +6,7 @@
       paper-button {
         font-size: 18px;
         min-width: 0;
+        font-weight: 300;
       }
     }
   }
@@ -24,7 +25,7 @@ html /deep/ #dialog::shadow #scroller {
 }
 
 html /deep/ #dialog::shadow h1 {
-  font-weight: 100;
+  font-weight: 300;
   font-size: 24px;
   margin-top: 0;
   margin-bottom: 25px;

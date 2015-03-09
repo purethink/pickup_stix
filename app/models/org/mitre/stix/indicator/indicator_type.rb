@@ -1,4 +1,12 @@
 class Java::OrgMitreStixIndicator::IndicatorType
+  def information_source
+    self.producer
+  end
+
+  def information_source=(val)
+    self.producer=val
+  end
+
   def display_fields
     process_display_fields [:description, :valid_time_position, :kill_chain_phases, :likely_impact]
   end

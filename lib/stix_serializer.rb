@@ -14,17 +14,56 @@ module StixSerializer
     document['_id'].to_s
   end
 
-  def save
-
+  def save(default_args = {})
     # Create the vertex if it doesn't exist already
     self.generate_id! if self.id.nil?
     document = {}
 
     @node = find_or_create_node
-    build_hash(self).each {|k, v| document[k] = v}
-    @document = mongo_collection.insert(document)
+    process_information_source(default_args) if self.respond_to?(:information_source) || self.respond_to?(:producer)
+    process_handling(default_args) if self.respond_to?(:handling)
+    build_hash(self, default_args).each {|k, v| document[k] = v}
+
+    if existing_document = mongo_collection.find(self.class.query_from_id(self.id_string)).first
+      @document = existing_document
+      @document.update({:stix => document})
+    else
+      @document = mongo_collection.insert({:stix => document})
+    end
 
     return true
+  end
+
+  def process_handling(args)
+    if args[:markings]
+      self.handling ||= Java::OrgMitreData_marking::MarkingType.new
+      args[:markings].each do |marking|
+        specification = Java::OrgMitreData_marking::MarkingSpecificationType.new(:controlled_structure => "../../../descendant-or-self::node() | ../../../descendant-or-self::node()/@*", :marking_structures => [marking])
+        self.handling.markings << specification
+      end
+    end
+
+    args[:markings] ||= []
+    if self.handling.present?
+      self.handling.markings.each do |marking|
+        if marking.controlled_structure == "//node()" || marking.controlled_structure == "//node() | //@*"
+          marking.marking_structures.each do |st|
+            args[:markings] << st
+          end
+        end
+      end
+    end
+  end
+
+
+  def process_information_source(args)
+    method = self.respond_to?(:information_source) ? :information_source : :producer
+
+    if self.send(method).present?
+      args[:information_source] = self.send(method)
+    else
+      self.send("#{method}=", args[:information_source])
+    end
   end
 
   def find_or_create_node
@@ -60,7 +99,6 @@ module StixSerializer
   def add_relationship(to, descriptor)
     to_node = to.kind_of?(Neo4j::Node) ? to : to.node
     if self.node.rels(:dir => :outgoing, :between => to_node).to_a.length < 1
-      puts "Adding relationship between #{self.node} and #{to_node}"
       relationship = Neo4j::Relationship.create(descriptor, self.node, to_node, {'type' => descriptor})
     end
   end
@@ -107,12 +145,12 @@ module StixSerializer
 
     def query_from_id(id)
       if id =~ /^\w+:[\w-]+$/
-        {'id.local_part' => id.split(':').last, 'id.prefix' => id.split(':').first}
+        {'stix.id.local_part' => id.split(':').last, 'stix.id.prefix' => id.split(':').first}
       elsif id =~ /^\{(.+)\}(.+)$/
         full,ns,local = id.match(/^\{(.+)\}(.+)$/).to_a
-        {'id.local_part' => local, 'id.namespace' => ns}
+        {'stix.id.local_part' => local, 'stix.id.namespace' => ns}
       else
-        {'id.local_part' => id.split(':').last, 'id.prefix' => ''}
+        {'stix.id.local_part' => id.split(':').last, 'stix.id.prefix' => ''}
       end
     end
 
@@ -132,7 +170,7 @@ module StixSerializer
     end
 
     def from_mongo(mongo_obj)
-      obj = self.new(mongo_obj.except('_id', '@@class'))
+      obj = self.new(mongo_obj['stix'])
       obj.document = mongo_obj
       obj.node = self.find_node(obj.id_string)
       return obj
@@ -143,18 +181,11 @@ module StixSerializer
     end
 
     def search(term)
-      self.mongo_collection.find({"title" => Regexp.new(term)}).to_a.map {|i| self.from_mongo(i)}
+      self.mongo_collection.find({"stix.title" => Regexp.new(term)}).to_a.map {|i| self.from_mongo(i)}
     end
 
     def all
-      mongo_objects = mongo_collection.find.to_a
-
-      mongo_objects.map do |mongo_object|
-        obj = self.new(mongo_object.except('_id', '@@class'))
-        obj.document = mongo_object
-        obj.node = Neo4j::Node.find("node_id_index", "id", mongo_object.id) rescue nil
-        obj
-      end
+      mongo_collection.find.to_a.map {|mo| from_mongo(mo)}
     end
 
     def count

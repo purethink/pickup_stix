@@ -40,4 +40,21 @@ module ComponentsHelper
   def field_name(field)
     field.name.to_s.underscore
   end
+
+  def info_source_items(information_source)
+    information_source.contributing_sources.sources.collect do |cs|
+      cs.roles.map(&:value).join(", ") + ": " + cs.identity.name
+    end
+  end
+
+  def handling_items(handling)
+    handling.markings.map do |marking|
+      marking.marking_structures.map do |ms|
+        if ms.kind_of?(org.mitre.data_marking.extensions.markingstructure.TermsOfUseMarkingStructureType)
+          ms.terms_of_use
+        end
+      end
+    end.flatten
+  end
+
 end

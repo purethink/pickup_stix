@@ -15,8 +15,34 @@
       <a href="<%= component_path(@component, :format => 'xml') -%>" target="_blank"><paper-button><core-icon icon="cloud-download"></core-icon> Export to XML</paper-button></a>
     </div>
     <div id="markings">
-      <paper-button><core-icon icon="perm-identity"></core-icon> Information Source</paper-button>
-      <paper-button><core-icon icon="receipt"></core-icon> Handling</paper-button>
+      <% if @component.information_source.present? %>
+        <paper-menu-button>
+          <paper-button><core-icon icon="perm-identity"></core-icon> <%= @component.information_source.identity.try(:name) || " Information Source" -%></paper-button>
+          <% if info_source_items(@component.information_source).length > 0 %>
+            <paper-dropdown class="dropdown" valign="bottom" halign="right">
+                <core-menu class="menu">
+                  <% info_source_items(@component.information_source).each do |i| %>
+                    <core-item><%= i -%></core-item>
+                  <% end %>
+                </core-menu>
+            </paper-dropdown>
+          <% end %>
+        </paper-menu-button>
+      <% end %>
+      <% if @component.handling.present? %>
+      <paper-menu-button>
+        <paper-button><core-icon icon="receipt"></core-icon> Handling</paper-button>
+        <% if handling_items(@component.handling).length > 0 %>
+          <paper-dropdown class="dropdown" valign="bottom" halign="right">
+              <core-menu class="menu">
+                <% handling_items(@component.handling).each do |i| %>
+                  <core-item><%= i -%></core-item>
+                <% end %>
+              </core-menu>
+          </paper-dropdown>
+        <% end %>
+      </paper-menu-button>
+      <% end %>
     </div>
   </div>
 </stix-card>
