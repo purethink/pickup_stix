@@ -27,7 +27,9 @@ class SiteController < ApplicationController
       format.json { render :json => results.map {|r| {
         :title => r.title,
         :type => r.class.name.split('::').last.gsub('Type', '').downcase,
-        :url => component_path(r.class, id_string(r))
+        :url => component_path(r.class, id_string(r)),
+        :class => r.class.name,
+        :id => r.id_string
       }}}
     end
   end

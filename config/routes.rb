@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources component do
       member do
         get :stix
+        get :find_connections
       end
     end
   end

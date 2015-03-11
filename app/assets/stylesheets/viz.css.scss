@@ -1,0 +1,39 @@
+#graph-controls {
+  padding: 25px;
+  background-color: white;
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  label {
+    font-size: 24px;
+    color: black;
+  }
+
+  stix-autocomplete {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin: 0;
+
+    /deep/ input {
+      font-size: 24px;
+    }
+
+    /deep/ core-icon {
+      display: none;
+    }
+  }
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  z-index: 2;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}

@@ -1,5 +1,6 @@
 body /deep/ .generic-color {
   color: #333;
+  fill: #333;
   border-color: #aaa !important;
   &:hover, &:active, &:visited {
     color: #333;
@@ -8,6 +9,7 @@ body /deep/ .generic-color {
 
 body /deep/ .campaign-color {
   color: #145c90;
+  fill: #145c90;
   border-color: #145c90 !important;
   &:hover, &:active, &:visited {
     color: #145c90;
@@ -16,6 +18,7 @@ body /deep/ .campaign-color {
 
 body /deep/ .stix-color, .report-color {
   color: black;
+  fill: black;
   border-color: black !important;
   &:hover, &:active, &:visited {
     color: black;
@@ -24,6 +27,7 @@ body /deep/ .stix-color, .report-color {
 
 body /deep/ .threatactor-color {
   color: #b51d17;
+  fill: #b51d17;
   border-color: #b51d17 !important;
   &:hover, &:active, &:visited {
     color: #b51d17;
@@ -32,6 +36,7 @@ body /deep/ .threatactor-color {
 
 body /deep/ .courseofaction-color {
   color: #377900;
+  fill: #377900;
   border-color: #377900 !important;
   &:hover, &:active, &:visited {
     color: #377900;
@@ -40,6 +45,7 @@ body /deep/ .courseofaction-color {
 
 body /deep/ .observable-color {
   color: #6b81b5;
+  fill: #6b81b5;
   border-color: #6b81b5 !important;
   &:hover, &:active, &:visited {
     color: #6b81b5;
@@ -48,6 +54,7 @@ body /deep/ .observable-color {
 
 body /deep/ .indicator-color {
   color: #dddd00;
+  fill: #dddd00;
   border-color: #dddd00 !important;
   &:hover, &:active, &:visited {
     color: #dddd00;
@@ -56,6 +63,7 @@ body /deep/ .indicator-color {
 
 body /deep/ .incident-color {
   color: #c96300;
+  fill: #c96300;
   border-color: #c96300 !important;
   &:hover, &:active, &:visited {
     color: #c96300;
@@ -64,6 +72,7 @@ body /deep/ .incident-color {
 
 body /deep/ .ttp-color {
   color: #532580;
+  fill: #532580;
   border-color: #532580 !important;
   &:hover, &:active, &:visited {
     color: #532580;
@@ -72,6 +81,7 @@ body /deep/ .ttp-color {
 
 body /deep/ .exploittarget-color {
   color: #4e4e4e;
+  fill: #4e4e4e;
   border-color: #4e4e4e !important;
   &:hover, &:active, &:visited {
     color: #4e4e4e;

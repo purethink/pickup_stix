@@ -54,10 +54,10 @@ ul, li {
   }
 }
 
-html,body {
+html,body, html /deep/ *, body /deep/ * {
   height: 100%;
   font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   background-color: #eee;
 }
 
@@ -84,7 +84,7 @@ h1 {
 
     margin: 20px;
     width: 220px;
-    
+
   }
 
   input {

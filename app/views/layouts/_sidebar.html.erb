@@ -1,7 +1,7 @@
 <div id="sidebar">
   <nav>
     <form class="form-search">
-      <stix-autocomplete></stix-autocomplete>
+      <stix-autocomplete id="global-search" url="/autocomplete"></stix-autocomplete>
     </form>
     <core-menu>
       <ul>
@@ -27,5 +27,7 @@
       $('.component-item').toggle('slide');
     });
   });
+
+  $('#global-search').on('itemSelected', function(e) {document.location.href = e.originalEvent.detail.url;})
 </script>
 <% end %>

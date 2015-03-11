@@ -7,6 +7,12 @@
       :host {
 
       }
+
+      input {
+        z-index: 100;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+      }
       .tt-dropdown-menu {
         position: absolute;
         top: 26px;
@@ -74,9 +80,11 @@
   <script>
     Polymer({
       domReady: function() {
+        var that = this;
+        var sep = this.attributes['url'].value.indexOf('?') > -1 ? '&' : '?';
         this.engine = new Bloodhound({
           name: 'autocomplete',
-          remote: this.attributes['url'].value + '?term=%QUERY',
+          remote: this.attributes['url'].value + sep + 'term=%QUERY',
           datumTokenizer: function(d) {
             return Bloodhound.tokenizers.whitespace(d.val);
           },
@@ -96,7 +104,7 @@
               return "<p class='suggestion " + val.type + "-color " + val.type + "-bgcolor'>" + val.title + "</p>"
             }
           }
-        }).on('typeahead:selected', function(e, it) {document.location.href = it.url});
+        }).on('typeahead:selected', function(e, it) {that.fire('itemSelected', it)});
       }
     });
   </script>

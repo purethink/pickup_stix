@@ -7,12 +7,22 @@ nav ol li {
   display: inline-block;
   margin-left: 20px;
   font-size: 24px;
-  color: white;
   padding-left: 0;
-  opacity: 0.7;
+
+  span, a, a:visited {
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  a:hover, a:active {
+    opacity: 1;
+  }
 
   &:last-child {
-    opacity: 1;
+    span, a, a:visited {
+      opacity: 1;
+    }
   }
 
   > core-icon {

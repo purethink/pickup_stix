@@ -43,6 +43,7 @@
   </core-scaffold>
 </body>
 <%= javascript_include_tag 'application' %>
+<script src="/bower_components/d3/d3.min.js"></script>
 <%= yield(:javascript) %>
 <script>
   window._token = '<%= form_authenticity_token %>';
