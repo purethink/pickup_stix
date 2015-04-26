@@ -37,6 +37,7 @@ module StixSerializer
   def process_handling(args)
     if args[:markings]
       self.handling ||= Java::OrgMitreData_marking::MarkingType.new
+      self.handling.markings ||= []
       args[:markings].each do |marking|
         specification = Java::OrgMitreData_marking::MarkingSpecificationType.new(:controlled_structure => "../../../descendant-or-self::node() | ../../../descendant-or-self::node()/@*", :marking_structures => [marking])
         self.handling.markings << specification

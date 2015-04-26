@@ -1,8 +1,11 @@
 ul.component-list {
-  padding: 0;
+  list-style-type: none;
+  text-align: left;
+  padding: 0 0 10px;
   li {
-    padding: 5px 0 0 5px;
-    font-size: 1.3em;
+    padding: 0;
+    font-size: 1.1em;
+    line-height: 1.3;
     &:first-child {
       padding-top: 0;
     }
@@ -67,16 +70,6 @@ stix-card {
   margin: 25px;
   padding: 0;
   width: calc(100% - 50px);
-}
-
-ul.component-list {
-  list-style-type: none;
-  text-align: left;
-}
-
-ul.component-list li {
-  padding: 5px 0;
-  margin: 0;
 }
 
 .double-column {

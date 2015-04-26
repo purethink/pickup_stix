@@ -13,7 +13,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reports
+  resources :reports do
+    member do
+      get :stix
+      get :find_connections
+    end
+  end
 
   get "queries/:action" => "queries"
 

@@ -48,9 +48,9 @@ class ComponentsController < ApplicationController
   def find_connections_to(target)
     target_object = target['class'].constantize.find(target['id'])
 
-    sp_query = "MATCH (source {stix_id:\"#{@component.id_string}\"}),(target {stix_id:\"#{target_object.id_string}\"}),p=allShortestPaths((source)-[*]-(target)) RETURN nodes(p) as nodes,relationships(p) as relationships"
+    all_query = "MATCH path = (source {stix_id:\"#{@component.id_string}\"})-[relationships*1..4]->(target {stix_id:\"#{target_object.id_string}\"}) RETURN nodes(path) as nodes, relationships(path) as relationships"
 
-    results = Neo4j::Session.query(sp_query).to_a
+    results = Neo4j::Session.query(all_query).to_a
 
     nodes = []
     relationships = []
