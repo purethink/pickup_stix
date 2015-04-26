@@ -48,22 +48,31 @@ class ComponentsController < ApplicationController
   def find_connections_to(target)
     target_object = target['class'].constantize.find(target['id'])
 
-    all_query = "MATCH (source {stix_id:\"#{@component.id_string}\"})-[r*1..4]->(target {stix_id:\"#{target_object.id_string}\"}) RETURN rel"
-    sp_query = "MATCH (source {stix_id:\"#{@component.id_string}\"}),(target {stix_id:\"#{target_object.id_string}\"}),p=allShortestPaths((source)-[*..15]-(target)) RETURN nodes(p) as nodes,relationships(p) as relationships"
+    sp_query = "MATCH (source {stix_id:\"#{@component.id_string}\"}),(target {stix_id:\"#{target_object.id_string}\"}),p=allShortestPaths((source)-[*]-(target)) RETURN nodes(p) as nodes,relationships(p) as relationships"
 
-    results = Neo4j::Session.query(all_query).to_a[0]
+    results = Neo4j::Session.query(sp_query).to_a
 
     nodes = []
+    relationships = []
     map = {}
-    results['nodes'].each_with_index do |n, i|
-      nodes << {title: n['title'], type: n['class'], id: n.neo_id}
-      map[n.neo_id] = i
+
+    results.each do |path|
+      path['nodes'].each_with_index do |n, i|
+        if map[n.neo_id].nil?
+          nodes << {title: n['title'], type: n['class'], id: n.neo_id}
+          map[n.neo_id] = nodes.length - 1
+        end
+      end
+
+      path['relationships'].each do |r|
+        relationships << {source: map[r.start_node.neo_id], target: map[r.end_node.neo_id]}
+      end
     end
 
     return {
       graph: {
         nodes: nodes,
-        edges: results['relationships'].map {|r| {source: map[r.start_node.neo_id], target: map[r.end_node.neo_id]}}
+        edges: relationships
       }
     }
   end
