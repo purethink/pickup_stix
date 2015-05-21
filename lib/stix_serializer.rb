@@ -20,8 +20,8 @@ module StixSerializer
     document = {}
 
     @node = find_or_create_node
-    process_information_source(default_args) if self.respond_to?(:information_source) || self.respond_to?(:producer)
-    process_handling(default_args) if self.respond_to?(:handling)
+    process_information_source(default_args) if (self.respond_to?(:information_source) || self.respond_to?(:producer)) && !self.kind_of?(Java::OrgMitreCyboxCore::ObservableType)
+    process_handling(default_args) if self.respond_to?(:handling) && !self.kind_of?(Java::OrgMitreCyboxCore::ObservableType)
     build_hash(self, default_args).each {|k, v| document[k] = v}
 
     if existing_document = mongo_collection.find(self.class.query_from_id(self.id_string)).first
